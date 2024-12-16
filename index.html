@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warpcast Frame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="frame">
+        <header class="frame-header">
+            <div class="profile">
+                <img src="https://via.placeholder.com/50" alt="Profile" id="profile-img">
+                <div class="profile-info">
+                    <h2 id="username">Test User</h2>
+                    <span id="farcaster-id">FID: 12345</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="frame-body">
+            <div class="data-row">
+                <div class="data-label">Today's Allocation</div>
+                <div class="data-value" id="allocation">20 Allocations</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Remaining</div>
+                <div class="data-value" id="remaining">5 Remaining</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Percent Tipped</div>
+                <div class="data-value" id="percent-tipped">85%</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Rank</div>
+                <div class="data-value" id="rank">Top #10</div>
+            </div>
+        </main>
+
+        <footer class="score">
+            Score: <span id="score">98</span>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
