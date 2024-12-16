@@ -1,5 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
+    background: #f4f4f4; /* Fallback */
     background: linear-gradient(120deg, #f3f4f7, #eaf1fc);
     margin: 0;
     display: flex;
@@ -10,14 +11,14 @@ body {
 
 .frame {
     background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 400px;
-    padding: 30px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -35,7 +36,7 @@ body {
 }
 
 .profile-info h2 {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
     color: #333;
 }
@@ -50,6 +51,12 @@ body {
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.data-row:hover {
+    background-color: #f9f9f9;
 }
 
 .data-label {
@@ -65,16 +72,16 @@ body {
 
 .score {
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #6a11cb;
 }
 
-/* Animations with browser prefixes */
-@-webkit-keyframes fadeIn {
+/* Animations */
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
@@ -82,13 +89,21 @@ body {
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@media (max-width: 480px) {
+    .frame {
+        padding: 15px;
+        gap: 10px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .profile-info h2 {
+        font-size: 16px;
+    }
+
+    .data-row {
+        padding: 8px;
+    }
+
+    .score {
+        font-size: 18px;
     }
 }
