@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_KEY = 'IvJR3EdaHw9fRZ3eCmq5iPAFW-4Ecybz'; 
+    const API_KEY = 'wc_secret_29b25514c07d8415ba66464e05441d777c070438cfa09cf74e93963d_97ed49ea'; 
     const BASE_URL = 'https://api.warpcast.com/v2';
 
     const fetchUserData = async (fid) => {
