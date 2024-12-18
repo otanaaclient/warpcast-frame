@@ -19,24 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchUserData = async (fid) => {
         try {
-            const response = await fetch(${BASE_URL}/userDataByFid?fid=${fid}, {
+            const response = await fetch(`${BASE_URL}/userDataByFid?fid=${fid}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': Bearer ${API_KEY},
+                    'Authorization': `Bearer ${API_KEY}`,
                     'Content-Type': 'application/json',
                 },
             });
 
             if (!response.ok) {
                 const errorMessage = await response.text();
-                throw new Error(Error: ${response.status} - ${response.statusText} - ${errorMessage});
+                throw new Error(`Error: ${response.status} - ${response.statusText} - ${errorMessage}`);
             }
 
             const data = await response.json();
             updateUI(data);
         } catch (error) {
             console.error("Error fetching user data:", error);
-            document.querySelector('.frame-body').innerHTML = <p style="color: red;">${error.message}</p>;
+            document.querySelector('.frame-body').innerHTML = `<p style="color: red;">${error.message}</p>`;
         }
     };
 
@@ -44,10 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const userData = data.data || {};
         const userBody = userData.userDataBody || {};
 
+        // Cache DOM elements to improve performance
+        const usernameElement = document.querySelector('#username');
+        const profileImgElement = document.querySelector('#profile-img');
+        const farcasterIdElement = document.querySelector('#farcaster-id');
+
         // Update Profile Information
-        document.querySelector('#username').textContent = userBody.username || '@username';
-        document.querySelector('#profile-img').src = userBody.value || 'https://via.placeholder.com/50';
-        document.querySelector('#farcaster-id').textContent = userData.fid || 'Farcaster ID';
+        usernameElement.textContent = userBody.username || '@username';
+        profileImgElement.src = userBody.value || 'https://via.placeholder.com/50';
+        farcasterIdElement.textContent = userData.fid || 'Farcaster ID';
 
         // Update Stats with better visuals
         document.querySelector('#allocation').textContent = '20 Allocations';
@@ -56,28 +61,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#rank').textContent = 'Top #10';
         document.querySelector('#score').textContent = '98';
 
-        // Enhance animations
+        // Enhance animations with delay per row
         const rows = document.querySelectorAll('.data-row');
         rows.forEach((row, index) => {
-            row.style.animation = fadeIn 0.5s ease-in-out ${(index + 1) * 0.1}s forwards;
+            row.style.animation = `fadeIn 0.5s ease-in-out ${(index + 1) * 0.1}s forwards`;
         });
     };
 
     // Fetch data for a specific user FID (example FID: 6833)
     fetchUserData(6833);
 
-    // Add animations
+    // Add initial opacity 0 for rows
     const rows = document.querySelectorAll('.data-row');
     rows.forEach((row) => {
         row.style.opacity = 0;
     });
 
-    // Animations
+    // Background animation
     document.querySelector('body').style.animation = 'fadeInBg 1s ease-in-out';
 
     // CSS Keyframes
     const styleSheet = document.createElement('style');
-    styleSheet.textContent = 
+    styleSheet.textContent = `
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -97,6 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 background: linear-gradient(120deg, #f3f4f7, #eaf1fc);
             }
         }
-    ;
+    `;
     document.head.appendChild(styleSheet);
 });
